@@ -60,7 +60,14 @@ docs/_build/
 # PyBuilder
 target/
 
+# IPython Notebook
+.ipynb_checkpoints/
+
+# PyCharm
+.idea/
+
 
 # emacs
 *~
 *\#*\#
+.\#*

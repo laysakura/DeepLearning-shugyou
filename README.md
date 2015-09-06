@@ -9,7 +9,7 @@ My personal training to understand Deep Learning deeply...
 2. Install [PyBrain](http://pybrain.org/), a Neural Network library.
 
     ```bash
-    pip install git+https://github.com/pybrain/pybrain.git    
+    ~/anaconda/bin/pip install git+https://github.com/pybrain/pybrain.git
     ```
     
     Note: I encountered errors when using pybrain package in PyPI.

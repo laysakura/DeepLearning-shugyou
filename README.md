@@ -18,3 +18,9 @@ My personal training to understand Deep Learning deeply...
 ## Shugyou01 - PyBrain Tutorial
 
 Write (or copy-and-paste) **working codes** from [PyBrain tutorial](http://pybrain.org/docs/index.html#tutorials).
+
+## Shutyou02 - Logic Element
+
+Learns logic element's function such as XOR.
+
+Provides basic examples of DNN.

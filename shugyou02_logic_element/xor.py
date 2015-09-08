@@ -47,7 +47,7 @@ def main():
     pl.hold(True)
     pl.show()
 
-    # 10タイムステップ分の勾配降下。学習曲線も描画しつつ。
+    # N_EPOCHSタイムステップ分の勾配降下。学習曲線も描画しつつ。
     trainer = BackpropTrainer(net, ds)
     for i in range(N_EPOCHS):
         train_err = trainer.train()

@@ -7,7 +7,7 @@
 # 3rd party modules
 from pybrain.tools.shortcuts import buildNetwork
 from pybrain.structure import SigmoidLayer, TanhLayer
-from pybrain.datasets.sequential import SequentialDataSet
+from pybrain.datasets.sequential import SupervisedDataSet
 from pybrain.supervised.trainers import BackpropTrainer
 import pylab as pl
 
@@ -26,17 +26,16 @@ def main():
     net = buildNetwork(
         N_IN_UNITS, N_HIDDEN1_UNITS, N_HIDDEN2_UNITS, N_OUT_UNITS,
         hiddenclass=TanhLayer, outclass=SigmoidLayer,
-        recurrent=True, bias=True
+        bias=True
     )
     net.randomize()
 
     print(">>> print net")
     print(net)
 
-    # 入出力データ。自明に同じデータ点を重複して持って意味あるのか・・・?
-    ds = SequentialDataSet(N_IN_UNITS, N_OUT_UNITS)
+    # 入出力データ。
+    ds = SupervisedDataSet(N_IN_UNITS, N_OUT_UNITS)
     for _ in range(100):
-        ds.newSequence()
         ds.appendLinked([0, 0], [0])
         ds.appendLinked([0, 1], [1])
         ds.appendLinked([1, 0], [1])
@@ -53,7 +52,8 @@ def main():
     for i in range(N_EPOCHS):
         train_err = trainer.train()
         pl.plot(i, train_err, 'o')
-        #pl.draw()  # 描画自体の負荷がかなり重いので、コメントアウトすると速くなる。
+        # pl.draw()  # 描画自体の負荷がかなり重いので、コメントアウトすると速くなる。
+        print("Iteration %04d : train_err=%f" % (i, train_err))
 
     # テストセットで学習結果を確認。
     print([0, 0], net.activate([0, 0]))

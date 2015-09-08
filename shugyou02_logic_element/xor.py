@@ -6,7 +6,7 @@
 
 # 3rd party modules
 from pybrain.tools.shortcuts import buildNetwork
-from pybrain.structure import SigmoidLayer
+from pybrain.structure import SigmoidLayer, TanhLayer
 from pybrain.datasets.sequential import SequentialDataSet
 from pybrain.supervised.trainers import BackpropTrainer
 import pylab as pl
@@ -17,14 +17,15 @@ import pylab as pl
 def main():
     N_IN_UNITS = 2
     N_OUT_UNITS = 1
-    N_HIDDEN_UNITS = 2
+    N_HIDDEN1_UNITS = 2
+    N_HIDDEN2_UNITS = 2
 
-    N_EPOCHS = 1000
+    N_EPOCHS = 500
 
     # 分類器の構築。buildNetwork()を使うと、入力層はLinearLayerになる。
     net = buildNetwork(
-        N_IN_UNITS, N_HIDDEN_UNITS, N_OUT_UNITS,
-        hiddenclass=SigmoidLayer, outclass=SigmoidLayer,
+        N_IN_UNITS, N_HIDDEN1_UNITS, N_HIDDEN2_UNITS, N_OUT_UNITS,
+        hiddenclass=TanhLayer, outclass=SigmoidLayer,
         recurrent=True, bias=True
     )
     net.randomize()
@@ -34,7 +35,7 @@ def main():
 
     # 入出力データ。自明に同じデータ点を重複して持って意味あるのか・・・?
     ds = SequentialDataSet(N_IN_UNITS, N_OUT_UNITS)
-    for _ in range(10):
+    for _ in range(100):
         ds.newSequence()
         ds.appendLinked([0, 0], [0])
         ds.appendLinked([0, 1], [1])
@@ -52,7 +53,7 @@ def main():
     for i in range(N_EPOCHS):
         train_err = trainer.train()
         pl.plot(i, train_err, 'o')
-        pl.draw()  # 描画自体の負荷がかなり重いので、コメントアウトすると速くなる。
+        #pl.draw()  # 描画自体の負荷がかなり重いので、コメントアウトすると速くなる。
 
     # テストセットで学習結果を確認。
     print([0, 0], net.activate([0, 0]))

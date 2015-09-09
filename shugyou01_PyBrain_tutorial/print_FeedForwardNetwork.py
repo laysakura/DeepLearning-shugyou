@@ -15,16 +15,16 @@ from pybrain.structure import FullConnection
 def main():
     n = FeedForwardNetwork()
 
-    inLayer = LinearLayer(2)
-    hiddenLayer = SigmoidLayer(3)
-    outLayer = LinearLayer(1)
+    in_layer = LinearLayer(2)
+    hidden_layer = SigmoidLayer(3)
+    out_layer = LinearLayer(1)
 
-    n.addInputModule(inLayer)
-    n.addModule(hiddenLayer)
-    n.addOutputModule(outLayer)
+    n.addInputModule(in_layer)
+    n.addModule(hidden_layer)
+    n.addOutputModule(out_layer)
 
-    in_to_hidden = FullConnection(inLayer, hiddenLayer)
-    hidden_to_out = FullConnection(hiddenLayer, outLayer)
+    in_to_hidden = FullConnection(in_layer, hidden_layer)
+    hidden_to_out = FullConnection(hidden_layer, out_layer)
 
     n.addConnection(in_to_hidden)
     n.addConnection(hidden_to_out)

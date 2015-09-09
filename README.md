@@ -14,6 +14,11 @@ My personal training to understand Deep Learning deeply...
     
     Note: I encountered errors when using pybrain package in PyPI.
     I recommend to install package in GitHub.
+3. Install Benchmarker. Some codes use it.
+
+    ```bash
+    ~/anaconda/bin/pip install Benchmarker
+    ```
 
 ## Shugyou01 - PyBrain Tutorial
 
@@ -23,4 +28,5 @@ Write (or copy-and-paste) **working codes** from [PyBrain tutorial](http://pybra
 
 Learns logic element's function such as XOR.
 
-Provides basic examples of DNN.
+- xor.py: Provides basic examples of DNN.
+- xor_best_nn.py: Trying a few kinds of DNNs to find the fastest and the most precise one.

@@ -15,16 +15,16 @@ import pylab as pl
 
 
 def main():
-    N_IN_UNITS = 2
-    N_OUT_UNITS = 1
-    N_HIDDEN1_UNITS = 2
-    N_HIDDEN2_UNITS = 2
+    n_in_units = 2
+    n_out_units = 1
+    n_hidden1_units = 2
+    n_hidden2_units = 2
 
-    N_EPOCHS = 500
+    n_epochs = 500
 
     # 分類器の構築。buildNetwork()を使うと、入力層はLinearLayerになる。
     net = buildNetwork(
-        N_IN_UNITS, N_HIDDEN1_UNITS, N_HIDDEN2_UNITS, N_OUT_UNITS,
+        n_in_units, n_hidden1_units, n_hidden2_units, n_out_units,
         hiddenclass=TanhLayer, outclass=SigmoidLayer,
         bias=True
     )
@@ -34,7 +34,7 @@ def main():
     print(net)
 
     # 入出力データ。
-    ds = SupervisedDataSet(N_IN_UNITS, N_OUT_UNITS)
+    ds = SupervisedDataSet(n_in_units, n_out_units)
     for _ in range(100):
         ds.appendLinked([0, 0], [0])
         ds.appendLinked([0, 1], [1])
@@ -49,7 +49,7 @@ def main():
 
     # N_EPOCHSタイムステップ分の勾配降下。学習曲線も描画しつつ。
     trainer = BackpropTrainer(net, ds)
-    for i in range(N_EPOCHS):
+    for i in range(n_epochs):
         train_err = trainer.train()
         pl.plot(i, train_err, 'o')
         # pl.draw()  # 描画自体の負荷がかなり重いので、コメントアウトすると速くなる。

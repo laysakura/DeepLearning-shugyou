@@ -29,7 +29,8 @@ def main():
 
     tstdata_tmp, trndata_tmp = alldata.splitWithProportion(0.25)
 
-    # Workaround. See: http://stackoverflow.com/questions/27887936/attributeerror-using-pybrain-splitwithportion-object-type-changed
+    # Workaround.
+    # See: http://stackoverflow.com/questions/27887936/attributeerror-using-pybrain-splitwithportion-object-type-changed
     tstdata = ClassificationDataSet(2, 1, nb_classes=3)
     for n in range(tstdata_tmp.getLength()):
         tstdata.addSample(tstdata_tmp.getSample(n)[0], tstdata_tmp.getSample(n)[1])
